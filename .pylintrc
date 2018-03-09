@@ -1,0 +1,13 @@
+[MASTER]
+ignore=.git,__pycache__,messages
+
+[MESSAGES CONTROL]
+disable=attribute-defined-outside-init,missing-docstring,relative-beyond-top-level
+
+[FORMAT]
+max-line-length=120
+expected-line-ending-format=LF
+indent-string='  '
+
+[TYPECHECK]
+ignored-modules=sublime,sublime_plugin

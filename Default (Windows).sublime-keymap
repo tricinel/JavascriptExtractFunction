@@ -1,0 +1,11 @@
+[
+  {
+    "keys": ["alt+f"],
+    "command": "javascript_extract_function"
+  },
+  {
+    "keys": ["shift+alt+f"],
+    "command": "javascript_extract_function",
+    "args": { "skip_quick_panel": true, "command_index": 0 }
+  }
+]

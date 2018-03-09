@@ -1,0 +1,21 @@
+[
+  {
+    "caption": "Extract Javascript Function",
+    "command": "javascript_extract_function"
+  },
+  {
+    "caption": "Extract Javascript Function to Arrow Function",
+    "command": "javascript_extract_function",
+    "args": {"skip_quick_panel": true, "command_index": 0}
+  },
+  {
+    "caption": "Extract Javascript Function to Regular Function",
+    "command": "javascript_extract_function",
+    "args": {"skip_quick_panel": true, "command_index": 1}
+  },
+  {
+    "caption": "Extract Javascript Function to Anonymous Function",
+    "command": "javascript_extract_function",
+    "args": {"skip_quick_panel": true, "command_index": 2}
+  }
+]

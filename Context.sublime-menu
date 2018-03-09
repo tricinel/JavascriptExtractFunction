@@ -1,0 +1,39 @@
+[
+  {
+    "caption": "Extract Javascript Function",
+    "id": "javascript_extract_function",
+    "children": [
+      {
+        "caption": "Arrow Function",
+        "command": "javascript_extract_function",
+        "args": {"skip_quick_panel": true, "command_index": 0}
+      },
+      {
+        "caption": "Regular Function",
+        "command": "javascript_extract_function",
+        "args": {"skip_quick_panel": true, "command_index": 1}
+      },
+      {
+        "caption": "Anonymous Function",
+        "command": "javascript_extract_function",
+        "args": {"skip_quick_panel": true, "command_index": 2}
+      },
+      { "caption": "-"},
+      {
+        "caption": "Arrow Function (Copy to Clipboard)",
+        "command": "javascript_extract_function",
+        "args": {"skip_quick_panel": true, "auto_paste": false, "command_index": 0}
+      },
+      {
+        "caption": "Regular Function (Copy to Clipboard)",
+        "command": "javascript_extract_function",
+        "args": {"skip_quick_panel": true, "auto_paste": false, "command_index": 1}
+      },
+      {
+        "caption": "Anonymous Function (Copy to Clipboard)",
+        "command": "javascript_extract_function",
+        "args": {"skip_quick_panel": true, "auto_paste": false, "command_index": 2}
+      },
+    ]
+  }
+]
