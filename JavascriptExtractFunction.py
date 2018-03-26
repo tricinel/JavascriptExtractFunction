@@ -127,8 +127,8 @@ class JavascriptExtractFunctionCommand(sublime_plugin.TextCommand):
   def format_function_name(function_name):
     if len(function_name.split(" ")) > 1:
       words = function_name.split(" ")
-      first, rest = words[0], words[1:]
+      first, rest = words[0].lower(), words[1:]
     else:
       first = function_name
       rest = []
-    return first.lower() + "".join(word.capitalize() for word in rest)
+    return first + "".join(word.capitalize() for word in rest)
