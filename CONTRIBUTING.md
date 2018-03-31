@@ -27,7 +27,5 @@ git push origin {branch_name}
 
 > **NOTE:** Please send only related changes in the same pull request. Typically a pull request will include changes in a single file.
 
-[issue]: https://github.com/jonlabelle/SublimeJsPrettier/issues
-[Github Help]: https://help.github.com/articles/editing-files-in-another-user-s-repository/
-[The seven rules of a great Git commit message]: https://chris.beams.io/posts/git-commit/#seven-rules
-[fork the repository]: https://github.com/jonlabelle/SublimeJsPrettier/fork
+[issue]: https://github.com/tricinel/JavascriptExtractFunction/issues
+[fork the repository]: https://github.com/tricinel/JavascriptExtractFunction/fork

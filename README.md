@@ -25,8 +25,8 @@ You can also right-click on a selected piece of code in a file to bring up the C
 
 The plugin adds two key bindings that you can use as shortcuts.
 
-* <kbd>alt</kbd> + <kbd>m</kbd> will ask you to select what type of function to extract your function into
-* <kbd>shift</kbd> + <kbd>alt</kbd> + <kbd>m</kbd> will automatically extract an arrow function and paste it into your code
+* <kbd>alt</kbd> + <kbd>f</kbd> will ask you to select what type of function to extract your function into
+* <kbd>shift</kbd> + <kbd>alt</kbd> + <kbd>f</kbd> will automatically extract an arrow function and paste it into your code
 
 ### Limitations
 
