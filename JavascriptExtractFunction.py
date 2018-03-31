@@ -1,5 +1,5 @@
 # Javascript Extract Function - Sublime Text 3 Plugin
-# Created by by Bogdan Lazar (@tricinel)
+# Made with love by Bogdan Lazar (@tricinel)
 # MIT
 
 import textwrap
@@ -7,6 +7,7 @@ import sublime
 import sublime_plugin
 from .Edit import Edit as Edit
 
+#pylint: disable=too-many-public-methods
 class JavascriptExtractFunctionCommand(sublime_plugin.TextCommand):
   def run(self, _edit, auto_paste=True, skip_quick_panel=False, command_index=0):
     commands = ["Extract arrow function", "Extract regular function", "Extract anonymous function"]
@@ -19,11 +20,11 @@ class JavascriptExtractFunctionCommand(sublime_plugin.TextCommand):
       self.view.window().show_quick_panel(commands, self.get_function_name)
 
   def get_function_name(self, command_index):
-    if command_index == 0:
+    if self.is_arrow_function(command_index):
       self.view.window().show_input_panel("Function name:", "", self.create_arrow_function, None, None)
-    if command_index == 1:
+    if self.is_regular_function(command_index):
       self.view.window().show_input_panel("Function name:", "", self.create_regular_function, None, None)
-    if command_index == 2:
+    if self.is_anonymous_function(command_index):
       self.view.window().show_input_panel("Function name:", "", self.create_anonymous_function, None, None)
 
   def create_arrow_function(self, function_name):
@@ -68,16 +69,15 @@ class JavascriptExtractFunctionCommand(sublime_plugin.TextCommand):
   def get_region_text(self, region):
     return self.view.substr(region)
 
-  # Created by https://github.com/pashamur/ruby-extract-method/blob/master/RubyExtractMethod.py
   def region_ends_with_newline(self, region):
     return self.view.rowcol(region.end())[1] == 0
 
   def build_new_method(self, function_name, method_body, command_index):
-    if command_index == 0:
+    if self.is_arrow_function(command_index):
       new_method = "\nconst " + function_name + " = () => {\n"
-    if command_index == 1:
+    if self.is_regular_function(command_index):
       new_method = "\nvar " + function_name + " = function " + function_name + "() {\n"
-    if command_index == 2:
+    if self.is_anonymous_function(command_index):
       new_method = "\nfunction " + function_name + "() {\n"
 
     new_method += self.indent_text(method_body)
@@ -88,30 +88,34 @@ class JavascriptExtractFunctionCommand(sublime_plugin.TextCommand):
 
     return new_method
 
+  def get_cursor_location(self, region):
+    start = region.a
+    return self.view.text_point(start, 0)
+
+  def reposition_cursor(self, point):
+    self.view.sel().clear()
+    self.view.show(point)
+
   def copy_method_to_clipboard(self, function_name, new_method):
     sublime.set_clipboard(new_method)
-    message = "The method " + function_name + " is now in your clipboard."
-    message += "Use your keybinding for paste-with indent to paste it into your code."
+    #pylint: disable=line-too-long
+    message = "The method " + function_name + " is now in your clipboard. Use your keybinding for paste-with indent to paste it into your code."
     self.display_message(message)
 
-  # Created by https://github.com/pashamur/ruby-extract-method/blob/master/RubyExtractMethod.py
   def indent_text(self, text):
     indentation = self.get_indentation_string()
     dedented_text = textwrap.dedent(text)
     indented_text = "\n".join(indentation + line for line in dedented_text.splitlines())
     return indented_text
 
-  # Created by https://github.com/pashamur/ruby-extract-method/blob/master/RubyExtractMethod.py
   def get_indentation_string(self):
     if self.use_spaces_for_indentation():
       return self.tab_size() * " "
     return "\t"
 
-  # Created by https://github.com/pashamur/ruby-extract-method/blob/master/RubyExtractMethod.py
   def tab_size(self):
     return self.view.settings().get('tab_size', 2)
 
-  # Created by https://github.com/pashamur/ruby-extract-method/blob/master/RubyExtractMethod.py
   def use_spaces_for_indentation(self):
     return self.view.settings().get('translate_tabs_to_spaces', True)
 
@@ -132,3 +136,15 @@ class JavascriptExtractFunctionCommand(sublime_plugin.TextCommand):
       first = function_name
       rest = []
     return first + "".join(word.capitalize() for word in rest)
+
+  @staticmethod
+  def is_arrow_function(command_index):
+    return command_index == 0
+
+  @staticmethod
+  def is_regular_function(command_index):
+    return command_index == 1
+
+  @staticmethod
+  def is_anonymous_function(command_index):
+    return command_index == 2
